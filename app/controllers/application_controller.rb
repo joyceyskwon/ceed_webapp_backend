@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   def token
-    request.headers.["Authorization"]
+    request.headers["Authorization"]
   end
 
   def encode_token
