@@ -3,7 +3,10 @@ class Api::V1::AuthController < ApplicationController
     @uesr = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       token = encode_token(@user.id)
-      render json: UserSerializer.new(@user)
+      render json: {
+        user: UserSerializer.new(@user),
+        token: token
+      }
     else
       render json: {errors: "User not found"}
     end

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
     request.headers["Authorization"]
   end
 
-  def encode_token
+  def encode_token(user_id)
     JWT.encode({user_id: user_id}, "ceed")
   end
 

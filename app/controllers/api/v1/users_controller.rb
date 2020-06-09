@@ -13,7 +13,10 @@ class Api::V1::UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       user_id = encode_token(@user.id)
-      render json: UserSerializer.new(@user)
+      render json: {
+        user: UserSerializer.new(@user),
+        token: token
+      }
     else
       render json: {errors: @user.errors.full_messages}
     end
